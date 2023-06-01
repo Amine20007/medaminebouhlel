@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Amine voyage
+    </title>
+    <style type="text/css">
+        body {
+            background-image: url("img/hotels.jpg");
+            background-repeat: no-repeat;
+            background-size: 1600px 900px;
+            color: #333333;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 28px;
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        input,
+        select {
+            display: block;
+            margin: 5px auto;
+            padding: 8px;
+            background-color: #FFFFFF;
+            color: #333333;
+            border: none;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        table {
+            background-color: rgb(0, 0, 0);
+            width: 45%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        td {
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        .room-type-label {
+            margin-top: 10px;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .submit-btn {
+            background-color: #FFC107;
+            color: #333333;
+            padding: 12px 20px;
+            border-radius: 5px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .back-link a {
+            border-radius: 5px;
+            border: solid thin #929292;
+            text-shadow: none;
+            background: #F6F6F6;
+            padding: 6px 12px;
+            margin: 4px;
+            text-decoration: none;
+            font-family: Arial;
+            font-size: 14px;
+            color: #333333;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            var destination = document.getElementById('destination').value;
+            var arrivalDate = document.getElementById('arrival-date').value;
+            var departureDate = document.getElementById('departure-date').value;
+            var adults = document.getElementById('adults').value;
+            var children = document.getElementById('children').value;
+            var rooms = document.getElementById('rooms').value;
+            var roomType = document.querySelector('input[name="room-type"]:checked');
+
+            if (destination === '' || arrivalDate === '' || departureDate === '' || adults === '' || roomType === null) {
+                alert('Please fill in all the required fields.');
+                return false;
+            }
+
+            var popupContent = "<h2>Reservation Details:</h2>" +
+                "<p><strong>Destination:</strong> " + destination + "</p>" +
+                "<p><strong>Arrival Date:</strong> " + arrivalDate + "</p>" +
+                "<p><strong>Departure Date:</strong> " + departureDate + "</p>" +
+                "<p><strong>Adults:</strong> " + adults + "</p>" +
+                "<p><strong>Children:</strong> " + children + "</p>" +
+                "<p><strong>Rooms:</strong> " + rooms + "</p>" +
+                "<p><strong>Room Type:</strong> " + roomType.value + "</p>";
+
+            var popupWindow = window.open("", "Reservation Details", "width=400,height=300");
+            popupWindow.document.write(popupContent);
+            popupWindow.document.close();
+
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Réservation d'Hôtel</h1>
+    <table>
+        <tr>
+            <td colspan="2">
+                <label for="destination">Destination:</label>
+                <select name="destination" id="destination">
+                    <option value="" selected disabled>Choisissez une destination</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Barcelone">Barcelone</option>
+                    <option value="Maldives">Maldives</option>
+                    <option value="London">Londres</option>
+                    <option value="Thailande">Thaïlande</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Marrakech">Marrakech</option>
+                    <option value="Rome">Rome</option>
+                    <option value="Dubai">Dubai</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="arrival-date">Date d'Arrivée:</label>
+                <input type="date" name="arrival-date" id="arrival-date">
+            </td>
+            <td>
+                <label for="departure-date">Date de Départ:</label>
+                <input type="date" name="departure-date" id="departure-date">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label for="adults">Nombre d'Adultes:</label>
+                <input type="number" id="adults">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label for="children">Nombre d'Enfants:</label>
+                <input type="number" id="children">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label for="rooms">Nombre de Chambres:</label>
+                <input type="number" id="rooms">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="room-type-label">
+                    <label>Type de Chambre:</label>
+                    <input type="radio" name="room-type" value="chambre-seul">Chambre Single<br>
+                    <input type="radio" name="room-type" value="chambre-double">Chambre Double<br>
+                    <input type="radio" name="room-type" value="chambre-de-famille">Suite<br>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Voir les Tarifs" onclick="return validateForm()" class="submit-btn">
+            </td>
+        </tr>
+    </table>
+    <div class="back-link">
+        <a href="accueil.html">Retour à la Page d'Accueil</a>
+    </div>
+</body>
+
+</html>
